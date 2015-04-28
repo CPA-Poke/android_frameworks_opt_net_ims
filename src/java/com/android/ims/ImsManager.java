@@ -911,7 +911,6 @@ public class ImsManager {
             }
         }
 
-        @Override
         public void registrationDisconnected(ImsReasonInfo imsReasonInfo) {
             if (DBG) {
                 log("registrationDisconnected :: imsReasonInfo" + imsReasonInfo);
