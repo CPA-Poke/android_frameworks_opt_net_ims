@@ -688,6 +688,23 @@ public class ImsCallSession {
     }
 
     /**
+     * Deflects an incoming call.
+     *
+     * @param number number to be deflected to
+     * @see Listener#callSessionDeflected, Listener#callSessionDeflectFailed
+     */
+    public void deflect(String number) {
+        if (mClosed) {
+            return;
+        }
+
+        try {
+            miSession.deflect(number);
+        } catch (RemoteException e) {
+        }
+    }
+
+    /**
      * Rejects an incoming call or session update.
      *
      * @param reason reason code to reject an incoming call
@@ -1207,6 +1224,15 @@ public class ImsCallSession {
                 int mode) {
             if (mListener != null) {
                 mListener.callSessionTtyModeReceived(ImsCallSession.this, mode);
+            }
+        }
+
+        @Override
+        public void callSessionDeflectFailed(IImsCallSession session,
+                ImsReasonInfo reasonInfo) {
+            if (mListener != null) {
+                //TODO: UI specific implementation.
+                //Vendor UI can listen to this callback to take action on failure.
             }
         }
 
