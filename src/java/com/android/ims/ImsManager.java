@@ -825,7 +825,6 @@ public class ImsManager {
             }
         }
 
-        @Override
         public void registrationDisconnected() {
             if (DBG) {
                 log("registrationDisconnected ::");
@@ -876,6 +875,15 @@ public class ImsManager {
             if (mListener != null) {
                 mListener.onFeatureCapabilityChanged(serviceClass,
                         enabledFeatures, disabledFeatures);
+            }
+        }
+
+        @Override
+        public void voiceMessageCountUpdate(int count) {
+            log("voiceMessageCountUpdate :: count=" + count);
+
+            if (mListener != null) {
+                mListener.onVoiceMessageCountChanged(count);
             }
         }
 
